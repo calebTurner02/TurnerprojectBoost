@@ -6,6 +6,7 @@ public class Movement : MonoBehaviour
 {
 
     [SerializeField] float fltMainThrust = 100f;
+    [SerializeField] float fltRotationThrust = 1f;
     Rigidbody rb;
     // Start is called before the first frame update
     void Start()
@@ -33,12 +34,16 @@ public class Movement : MonoBehaviour
     {
          if(Input.GetKey(KeyCode.A))
         {
-            Debug.Log("Pressed left");
+            ApplyRotation(fltRotationThrust);
         }
 
          else if(Input.GetKey(KeyCode.D))
         {
-            Debug.Log("Pressed right");
+            ApplyRotation(-fltRotationThrust);
         }
+    }
+    void ApplyRotation(float fltRotationThisFrame)
+    {
+        transform.Rotate(Vector3.forward * fltRotationThisFrame * Time.deltaTime);
     }
 }
