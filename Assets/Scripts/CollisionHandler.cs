@@ -7,6 +7,16 @@ public class CollisionHandler : MonoBehaviour
 {
 
     [SerializeField] float fltLoadLevelDelay = 1f;
+    [SerializeField] AudioClip crashAudio;
+    [SerializeField] AudioClip winAudio;
+
+    AudioSource audioSource;
+
+    void Start() 
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
     void OnCollisionEnter(Collision other) 
     {
         switch(other.gameObject.tag)
@@ -28,12 +38,14 @@ public class CollisionHandler : MonoBehaviour
 
    void StartSuccessSequence()
    {
+        audioSource.PlayOneShot(winAudio);
         GetComponent<Movement>().enabled = false;
         Invoke("LoadNextLevel", fltLoadLevelDelay);
    }
 
     void StartCrashSequence()
     {
+        audioSource.PlayOneShot(crashAudio);
         GetComponent<Movement>().enabled = false;
        Invoke("ReloadLevel", fltLoadLevelDelay);
     }

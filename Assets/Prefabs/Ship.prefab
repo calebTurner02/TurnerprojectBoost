@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4097367369413502743}
   - component: {fileID: 4097367369413502748}
   - component: {fileID: 202470301}
+  - component: {fileID: 202470302}
   m_Layer: 0
   m_Name: Ship
   m_TagString: Untagged
@@ -51,6 +52,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fltMainThrust: 1000
   fltRotationThrust: 100
+  mainEngine: {fileID: 8300000, guid: a26d5b67985b16749a9b78983b5866ef, type: 3}
 --- !u!33 &4097367369413502737
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -140,8 +142,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: a26d5b67985b16749a9b78983b5866ef, type: 3}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -226,3 +228,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &202470302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4097367369413502742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0838adef51b9ba340a38edc0009c0bc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fltLoadLevelDelay: 1
+  crashAudio: {fileID: 8300000, guid: 421081210b6aee445979cf824f08ef95, type: 3}
+  winAudio: {fileID: 8300000, guid: a9e75d54d074a28449ca77f1419edfb6, type: 3}
