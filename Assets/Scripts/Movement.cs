@@ -38,50 +38,71 @@ public class Movement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            rb.AddRelativeForce(Vector3.up * fltMainThrust * Time.deltaTime);
-            if(!audioSource.isPlaying)
-            {
-                audioSource.PlayOneShot(mainEngine);
-            }
-            if (!mainEngineParticle.isPlaying)
-            {
-               mainEngineParticle.Play(); 
-            }
-            
-           
+            StartThrusting();
         }
         else
         {
-            audioSource.Stop();
-            mainEngineParticle.Stop();
+            StopThrusting();
         }
     }
     void ProcessRotation()
     {
          if(Input.GetKey(KeyCode.A))
         {
-            ApplyRotation(fltRotationThrust);
-
-            if (!rightEngineParticle.isPlaying)
-            {
-               rightEngineParticle.Play(); 
-            }
+            RotateLeft();
         }
 
-         else if(Input.GetKey(KeyCode.D))
+        else if(Input.GetKey(KeyCode.D))
         {
-            ApplyRotation(-fltRotationThrust);
-            if (!leftEngineParticle.isPlaying)
-            {
-               leftEngineParticle.Play(); 
-            }
+            RotateRight();
         }
         else
         {
-            rightEngineParticle.Stop();
-            leftEngineParticle.Stop();
+            StopRotating();
         }
     }
+    void StartThrusting()
+    {
+        rb.AddRelativeForce(Vector3.up * fltMainThrust * Time.deltaTime);
+        if (!audioSource.isPlaying)
+        {
+            audioSource.PlayOneShot(mainEngine);
+        }
+        if (!mainEngineParticle.isPlaying)
+        {
+            mainEngineParticle.Play();
+        }
+    }
+    void StopThrusting()
+    {
+        audioSource.Stop();
+        mainEngineParticle.Stop();
+    }
+    private void StopRotating()
+    {
+        rightEngineParticle.Stop();
+        leftEngineParticle.Stop();
+    }
+
+    private void RotateRight()
+    {
+        ApplyRotation(-fltRotationThrust);
+        if (!leftEngineParticle.isPlaying)
+        {
+            leftEngineParticle.Play();
+        }
+    }
+
+    private void RotateLeft()
+    {
+        ApplyRotation(fltRotationThrust);
+
+        if (!rightEngineParticle.isPlaying)
+        {
+            rightEngineParticle.Play();
+        }
+    }
+
     void ApplyRotation(float fltRotationThisFrame)
     {
         rb.freezeRotation = true; //freeze rotation so we can manually rotate
