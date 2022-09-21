@@ -5,12 +5,19 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
 
+
+
     [SerializeField] float fltMainThrust = 100f;
     [SerializeField] float fltRotationThrust = 1f;
     [SerializeField] AudioClip mainEngine;
+    [SerializeField] ParticleSystem mainEngineParticle;
+    [SerializeField] ParticleSystem leftEngineParticle;
+    [SerializeField] ParticleSystem rightEngineParticle;
     Rigidbody rb;
 
     AudioSource audioSource;
+
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -36,11 +43,17 @@ public class Movement : MonoBehaviour
             {
                 audioSource.PlayOneShot(mainEngine);
             }
+            if (!mainEngineParticle.isPlaying)
+            {
+               mainEngineParticle.Play(); 
+            }
+            
            
         }
         else
         {
             audioSource.Stop();
+            mainEngineParticle.Stop();
         }
     }
     void ProcessRotation()
@@ -48,11 +61,25 @@ public class Movement : MonoBehaviour
          if(Input.GetKey(KeyCode.A))
         {
             ApplyRotation(fltRotationThrust);
+
+            if (!rightEngineParticle.isPlaying)
+            {
+               rightEngineParticle.Play(); 
+            }
         }
 
          else if(Input.GetKey(KeyCode.D))
         {
             ApplyRotation(-fltRotationThrust);
+            if (!leftEngineParticle.isPlaying)
+            {
+               leftEngineParticle.Play(); 
+            }
+        }
+        else
+        {
+            rightEngineParticle.Stop();
+            leftEngineParticle.Stop();
         }
     }
     void ApplyRotation(float fltRotationThisFrame)
