@@ -237,6 +237,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0838adef51b9ba340a38edc0009c0bc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fltLoadLevelDelay: 1
+  crashAudio: {fileID: 8300000, guid: 421081210b6aee445979cf824f08ef95, type: 3}
+  winAudio: {fileID: 8300000, guid: a9e75d54d074a28449ca77f1419edfb6, type: 3}
 --- !u!1 &410849614
 GameObject:
   m_ObjectHideFlags: 0
