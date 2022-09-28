@@ -16,7 +16,9 @@ public class Oscillator : MonoBehaviour
   
     void Update()
     {
+        if(fltPeriod <= Mathf.Epsilon) {return;}
         float fltCycles = Time.time / fltPeriod;
+
         const float fltTau = Mathf.PI * 2;
         float fltRawSinWave = Mathf.Sin(fltCycles * fltTau);
 
