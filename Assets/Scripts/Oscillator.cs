@@ -7,6 +7,7 @@ public class Oscillator : MonoBehaviour
     Vector3 startingPosition;
    [SerializeField] Vector3 movementVector;
    [SerializeField] [Range(0,1)] float fltMovementFactor;
+   [SerializeField] float fltPeriod = 2f;
     void Start()
     {
         startingPosition = transform.position;
@@ -15,6 +16,12 @@ public class Oscillator : MonoBehaviour
   
     void Update()
     {
+        float fltCycles = Time.time / fltPeriod;
+        const float fltTau = Mathf.PI * 2;
+        float fltRawSinWave = Mathf.Sin(fltCycles * fltTau);
+
+        fltMovementFactor = (fltRawSinWave + 1f) / 2f;
+       
         Vector3 offset = movementVector * fltMovementFactor;
         transform.position = startingPosition + offset;
     }

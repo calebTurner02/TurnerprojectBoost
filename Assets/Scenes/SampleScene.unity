@@ -484,8 +484,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aade0dbcd39e6ce44827b4a295c29e3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementVector: {x: 8, y: 0, z: 0}
+  movementVector: {x: 0, y: 10, z: 0}
   fltMovementFactor: 0
+  fltPeriod: 2
 --- !u!1 &473336263
 GameObject:
   m_ObjectHideFlags: 0
